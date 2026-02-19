@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { UserProvider, useUser } from './context/UserContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -25,9 +26,11 @@ const PublicRoute = ({ children }) => {
 
 function App() {
   return (
-    <UserProvider>
-      <MainLayout />
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <MainLayout />
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 
