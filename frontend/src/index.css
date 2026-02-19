@@ -1,15 +1,20 @@
 :root {
   --primary: #000000;
-  --primary-hover: #333333;
-  --bg-dark: #ffffff;
+  --bg-main: #ffffff;
   --bg-card: #ffffff;
   --text-main: #000000;
   --text-muted: #666666;
-  --accent: #000000;
-  --danger: #000000;
   --border: #000000;
-  --radius: 0px;
   --font-main: "Courier New", Courier, monospace;
+}
+
+body.dark-theme {
+  --primary: #ffffff;
+  --bg-main: #000000;
+  --bg-card: #000000;
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --border: #ffffff;
 }
 
 * {
@@ -20,7 +25,7 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-dark);
+  background-color: var(--bg-main);
   color: var(--text-main);
   line-height: 1.6;
 }
@@ -37,7 +42,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #ffffff;
+  background-color: var(--bg-main);
   border-bottom: 2px solid var(--border);
   position: sticky;
   top: 0;
@@ -108,7 +113,7 @@ body {
 /* Sidebar */
 .sidebar {
   width: 200px;
-  background-color: #ffffff;
+  background-color: var(--bg-main);
   border-right: 2px solid var(--border);
   padding: 2rem 1rem;
   display: flex;
@@ -152,7 +157,7 @@ body {
 
 .user-card-header {
   height: 60px;
-  background-color: #000000;
+  background-color: var(--primary);
   position: relative;
 }
 
@@ -163,7 +168,7 @@ body {
   position: absolute;
   bottom: -40px;
   left: 2rem;
-  background-color: #ffffff;
+  background-color: var(--bg-main);
 }
 
 .user-card-body {
@@ -228,16 +233,17 @@ body {
 .btn {
   padding: 0.5rem 1rem;
   border: 1px solid var(--border);
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-weight: bold;
   cursor: pointer;
   margin-right: 1rem;
+  font-family: inherit;
 }
 
 .btn:hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--bg-main);
 }
 
 /* Footer */
