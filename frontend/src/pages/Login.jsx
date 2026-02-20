@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import Button from '../components/Button';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -102,9 +103,13 @@ const Login = () => {
             />
           </div>
           {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
-          <button type="submit" className="btn" style={{ width: '100%', marginTop: '2rem' }} disabled={loading}>
-            {loading ? 'PROCESSING...' : (isLogin ? 'ENTER' : 'SEND OTP')}
-          </button>
+          <Button 
+            type="submit" 
+            style={{ width: '100%', marginTop: '2rem' }} 
+            isLoading={loading}
+          >
+            {isLogin ? 'ENTER' : 'SEND OTP'}
+          </Button>
         </form>
       ) : (
         <form onSubmit={handleOtpSubmit} className="settings-section">
@@ -121,18 +126,22 @@ const Login = () => {
             />
           </div>
           {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
-          <button type="submit" className="btn" style={{ width: '100%', marginTop: '2rem' }} disabled={loading}>
-            {loading ? 'VERIFYING...' : 'VERIFY & REGISTER'}
-          </button>
-          <button 
+          <Button 
+            type="submit" 
+            style={{ width: '100%', marginTop: '2rem' }} 
+            isLoading={loading}
+          >
+            VERIFY & REGISTER
+          </Button>
+          <Button 
             type="button" 
-            className="btn btn-secondary" 
-            style={{ width: '100%', marginTop: '1rem' }} 
+            variant="secondary" 
+            style={{ width: '100%', marginTop: '1rem' }}
             onClick={() => setStep(1)}
             disabled={loading}
           >
             BACK
-          </button>
+          </Button>
         </form>
       )}
 

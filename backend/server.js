@@ -1,9 +1,13 @@
 import "dotenv/config";
+if (process.env.NODE_ENV !== 'production') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import assetRoutes from "./src/routes/assetRoutes.js";
 
 // Connect to MongoDB
 connectDB();
@@ -11,10 +15,19 @@ connectDB();
 const app = express();
 
 // ─── Middleware ───────────────────────────────────────────
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ 
+  origin: process.env.CORS_ORIGIN || true, 
+  credentials: true 
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Request Logger
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 // ─── Routes ──────────────────────────────────────────────
 app.get("/", (_req, res) => {
@@ -22,6 +35,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/assets", assetRoutes);
 
 // ─── 404 Handler ─────────────────────────────────────────
 app.use((_req, res) => {

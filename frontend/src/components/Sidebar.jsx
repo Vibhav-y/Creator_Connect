@@ -1,21 +1,22 @@
-import React from 'react';
-import { LayoutDashboard, Users, Mail, Bell } from 'lucide-react';
+import { Compass, FolderHeart } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar-group">
-        <h3>Dashboard</h3>
+        <h3>Assets</h3>
         <ul>
-          <li className="active"><LayoutDashboard size={18} /> Overview</li>
-          <li><Users size={18} /> Community</li>
-        </ul>
-      </div>
-      <div className="sidebar-group">
-        <h3>Account</h3>
-        <ul>
-          <li><Mail size={18} /> Messages</li>
-          <li><Bell size={18} /> Notifications</li>
+          <li>
+            <NavLink to="/explore" className={({ isActive }) => isActive ? "active" : ""}>
+              <Compass size={18} /> Explore Assets
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-assets" className={({ isActive }) => isActive ? "active" : ""}>
+              <FolderHeart size={18} /> My Assets
+            </NavLink>
+          </li>
         </ul>
       </div>
     </aside>

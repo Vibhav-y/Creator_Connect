@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Home, User, Settings, LogOut, Sun, Moon } from 'lucide-react';
+import { NavLink, Link } from 'react-router-dom';
+import { Home, User, PlusSquare, LogOut, Sun, Moon } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { useTheme } from '../context/ThemeContext';
+import Button from './Button';
 
 const Navbar = () => {
   const { user, logout } = useUser();
@@ -14,42 +15,47 @@ const Navbar = () => {
         <Link to="/">CREATOR CONNECT</Link>
       </div>
       <div className="navbar-links">
-        <Link to="/" className="nav-item">
+        <NavLink to="/explore" className="nav-item">
           <Home size={20} />
           <span>Home</span>
-        </Link>
-        <Link to="/profile" className="nav-item">
-          <User size={20} />
-          <span>Profile</span>
-        </Link>
-        <Link to="/settings" className="nav-item">
-          <Settings size={20} />
-          <span>Settings</span>
-        </Link>
+        </NavLink>
+        {user && (
+          <>
+            <NavLink to="/create-asset" className="nav-item">
+              <PlusSquare size={20} />
+              <span>Create Asset</span>
+            </NavLink>
+            <NavLink to="/profile" className="nav-item">
+              <User size={20} />
+              <span>Profile</span>
+            </NavLink>
+          </>
+        )}
         {!user && (
-          <Link to="/login" className="nav-item">
+          <NavLink to="/login" className="nav-item">
             <span>Login</span>
-          </Link>
+          </NavLink>
         )}
       </div>
       <div className="navbar-user">
         {/* Theme Toggle Button */}
-        <button 
+        <Button 
           onClick={toggleTheme} 
           className="logout-btn" 
           title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           style={{ marginRight: '1rem' }}
+          variant="secondary"
         >
           {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-        </button>
+        </Button>
 
         {user && (
           <>
             <img src={user.avatar} alt={user.name} className="nav-avatar" />
             <span className="nav-username">{user.name}</span>
-            <button onClick={logout} className="logout-btn" title="Logout">
+            <Button onClick={logout} className="logout-btn" title="Logout" variant="secondary">
               <LogOut size={18} />
-            </button>
+            </Button>
           </>
         )}
       </div>
