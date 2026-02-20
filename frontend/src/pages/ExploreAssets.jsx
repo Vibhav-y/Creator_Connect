@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Button';
 import { Loader2 } from 'lucide-react';
+import API_BASE_URL from '../utils/api';
 
 const ExploreAssets = () => {
   const [assets, setAssets] = useState([]);
@@ -11,7 +12,7 @@ const ExploreAssets = () => {
     const fetchAssets = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/assets/getPublicasset?page=1&limit=100`);
+        const response = await fetch(`${API_BASE_URL}/api/assets/getPublicasset?page=1&limit=100`);
         const data = await response.json();
         if (data.success) {
           setAssets(data.assets);

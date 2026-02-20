@@ -263,14 +263,14 @@ The project uses **Vanilla CSS** with a strict monochrome constraint:
 
 ### Vercel (Frontend)
 
-The frontend is configured for deployment on **Vercel**. A `vercel.json` file is provided in the `/frontend` directory to handle:
+The frontend is configured for deployment on **Vercel**.
 
-- **SPA Routing**: Redirects all non-API requests to `index.html`.
-- **API Proxy**: (Optional) Forwards `/api` calls to the backend. You should update the destination URL in `vercel.json` to your production backend URL.
+- **SPA Routing**: A `vercel.json` file is provided in the `/frontend` directory to handle redirecting all non-API requests to `index.html`.
+- **API Configuration**: The app uses absolute URLs for API requests, driven by the `VITE_API_BASE_URL` environment variable.
 
 To deploy:
 
 1. Connect your repository to Vercel.
 2. Set the **Root Directory** to `frontend`.
-3. Add any necessary **Environment Variables** (e.g., `VITE_API_BASE_URL`).
+3. Add the **Environment Variable** `VITE_API_BASE_URL` pointing to your production backend URL (e.g., `https://your-backend.vercel.app`).
 4. Deploy!

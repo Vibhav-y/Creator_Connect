@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Button';
 import { Upload } from 'lucide-react';
+import API_BASE_URL from '../utils/api';
 
 const CreateAsset = () => {
   const [title, setTitle] = useState('');
@@ -55,7 +56,7 @@ const CreateAsset = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/assets/create', {
+      const response = await fetch(`${API_BASE_URL}/api/assets/create`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
