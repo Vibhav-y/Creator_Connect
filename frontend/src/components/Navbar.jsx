@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Home, User, Settings, LogOut, Sun, Moon } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { useTheme } from '../context/ThemeContext';
+import Button from './Button';
 
 const Navbar = () => {
   const { user, logout } = useUser();
@@ -34,22 +35,23 @@ const Navbar = () => {
       </div>
       <div className="navbar-user">
         {/* Theme Toggle Button */}
-        <button 
+        <Button 
           onClick={toggleTheme} 
           className="logout-btn" 
           title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           style={{ marginRight: '1rem' }}
+          variant="secondary"
         >
           {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-        </button>
+        </Button>
 
         {user && (
           <>
             <img src={user.avatar} alt={user.name} className="nav-avatar" />
             <span className="nav-username">{user.name}</span>
-            <button onClick={logout} className="logout-btn" title="Logout">
+            <Button onClick={logout} className="logout-btn" title="Logout" variant="secondary">
               <LogOut size={18} />
-            </button>
+            </Button>
           </>
         )}
       </div>

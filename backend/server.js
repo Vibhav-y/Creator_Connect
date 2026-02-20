@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import assetRoutes from "./src/routes/assetRoutes.js";
 
 // Connect to MongoDB
 connectDB();
@@ -22,6 +23,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/assets", assetRoutes);
 
 // ─── 404 Handler ─────────────────────────────────────────
 app.use((_req, res) => {

@@ -1,5 +1,5 @@
-import React from 'react';
 import Sidebar from '../components/Sidebar';
+import Button from '../components/Button';
 
 const Settings = () => {
   return (
@@ -20,8 +20,8 @@ const Settings = () => {
         </div>
         <div className="settings-section">
           <h3>Security</h3>
-          <button className="btn btn-secondary">Change Password</button>
-          <button className="btn btn-danger">Delete Account</button>
+          <Button variant="secondary" style={{ marginRight: '1rem' }}>Change Password</Button>
+          <Button variant="danger">Delete Account</Button>
         </div>
       </main>
     </div>
