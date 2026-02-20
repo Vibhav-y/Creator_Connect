@@ -5,13 +5,15 @@ import upload from '../middleware/uploadMiddleware.js';
 
 const router = express.Router();
 
-// Apply authentication to all asset routes
+// Public Routes
+router.get('/getPublicasset', assetController.getPublicAssets);
+
+// Apply authentication to protected asset routes
 router.use(protect);
 
-// Routes
-router.get('/public', assetController.getPublicAssets);
-router.post('/upload', upload.single('file'), assetController.uploadAsset);
-router.get('/my-assets', assetController.getMyAssets);
+// Protected Routes
+router.post('/create', upload.single('file'), assetController.uploadAsset);
+router.get('/getMyAsset', assetController.getMyAssets);
 router.delete('/:id', assetController.deleteAsset);
 
 export default router;

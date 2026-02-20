@@ -1,4 +1,7 @@
 import "dotenv/config";
+if (process.env.NODE_ENV !== 'production') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -16,6 +19,12 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Request Logger
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 // ─── Routes ──────────────────────────────────────────────
 app.get("/", (_req, res) => {
