@@ -256,3 +256,21 @@ The project uses **Vanilla CSS** with a strict monochrome constraint:
 - **Typography**: Monospace fonts (`Courier New`) for a technical, flat aesthetic.
 - **Layout**: Simple borders and zero shadows or gradients.
 - **Responsiveness**: A dynamic grid system that automatically adjusts column counts (4, 3, 2, 1) based on viewport width.
+
+---
+
+## 7. Deployment
+
+### Vercel (Frontend)
+
+The frontend is configured for deployment on **Vercel**. A `vercel.json` file is provided in the `/frontend` directory to handle:
+
+- **SPA Routing**: Redirects all non-API requests to `index.html`.
+- **API Proxy**: (Optional) Forwards `/api` calls to the backend. You should update the destination URL in `vercel.json` to your production backend URL.
+
+To deploy:
+
+1. Connect your repository to Vercel.
+2. Set the **Root Directory** to `frontend`.
+3. Add any necessary **Environment Variables** (e.g., `VITE_API_BASE_URL`).
+4. Deploy!
