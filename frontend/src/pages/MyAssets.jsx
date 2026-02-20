@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Button';
 import { Loader2, Trash2 } from 'lucide-react';
+import API_BASE_URL from '../utils/api';
 
 const MyAssets = () => {
   const [assets, setAssets] = useState([]);
@@ -12,7 +13,7 @@ const MyAssets = () => {
       setLoading(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`/api/assets/getMyAsset?page=1&limit=100`, {
+        const response = await fetch(`${API_BASE_URL}/api/assets/getMyAsset?page=1&limit=100`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -36,7 +37,7 @@ const MyAssets = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/assets/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/assets/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

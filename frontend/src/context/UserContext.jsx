@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import API_BASE_URL from '../utils/api';
 
 const UserContext = createContext();
 
@@ -15,7 +16,7 @@ export const UserProvider = ({ children }) => {
       }
 
       try {
-        const res = await fetch('/api/auth/me', {
+        const res = await fetch(`${API_BASE_URL}/api/auth/me`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -38,7 +39,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -57,7 +58,7 @@ export const UserProvider = ({ children }) => {
 
   const signup = async (userDetails) => {
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userDetails)
@@ -76,7 +77,7 @@ export const UserProvider = ({ children }) => {
 
   const sendOtp = async (email) => {
     try {
-      const res = await fetch('/api/auth/send-otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -89,7 +90,7 @@ export const UserProvider = ({ children }) => {
 
   const verifyOtp = async (email, otp) => {
     try {
-      const res = await fetch('/api/auth/verify-otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp })
