@@ -48,6 +48,7 @@ MONGO_URI=mongodb+srv://... (Your MongoDB URI)
 JWT_SECRET=your_secure_random_string
 EMAIL_USER=vibhav55y@gmail.com
 EMAIL_PASS=gjmlkdqwqgttgxtg (Gmail App Password)
+CORS_ORIGIN=http://localhost:5173
 ```
 
 **Frontend (.env)**
@@ -177,6 +178,8 @@ classDiagram
 
 ## 4. Backend API Reference
 
+### Auth API
+
 | Mode   | Method | Endpoint               | Description                |
 | :----- | :----- | :--------------------- | :------------------------- |
 | PUBLIC | POST   | `/api/auth/login`      | Login and receive JWT.     |
@@ -185,6 +188,15 @@ classDiagram
 | PUBLIC | POST   | `/api/auth/signup`     | Complete registration.     |
 | SECURE | GET    | `/api/auth/me`         | Fetch active user session. |
 | SECURE | POST   | `/api/auth/logout`     | End active session.        |
+
+### Assets API
+
+| Mode   | Method | Endpoint                     | Description                   |
+| :----- | :----- | :--------------------------- | :---------------------------- |
+| PUBLIC | GET    | `/api/assets/getPublicasset` | Fetch all public creations.   |
+| SECURE | POST   | `/api/assets/create`         | Upload new image/video asset. |
+| SECURE | GET    | `/api/assets/getMyAsset`     | Fetch user's private assets.  |
+| SECURE | DELETE | `/api/assets/:id`            | Remove a specific asset.      |
 
 _Note: All "SECURE" routes require `Authorization: Bearer <token>`._
 
@@ -215,6 +227,25 @@ The application features a built-in theme engine (`ThemeContext.jsx`) for switch
 - **Implementation**: Toggles a `.dark-theme` class on the `body` element.
 - **Visuals**: Swaps CSS variables for `--bg-main` and `--text-main` while keeping the flat, monochrome aesthetic.
 
+### Application Pages
+
+| Page          | Path         | Description                                       |
+| :------------ | :----------- | :------------------------------------------------ |
+| **Home**      | `/`          | Welcoming landing page with project introduction. |
+| **Explore**   | `/explore`   | Public gallery of assets shared by creators.      |
+| **My Assets** | `/my-assets` | Personal dashboard for managing uploads.          |
+| **Create**    | `/create`    | Upload interface for new images and videos.       |
+| **Profile**   | `/profile`   | Display user information and activity.            |
+| **Login**     | `/login`     | Integrated hub for Login and OTP-based Signup.    |
+
+### Core Components
+
+- **`Navbar.jsx`**: Global header featuring brand, main nav, and theme toggle.
+- **`Sidebar.jsx`**: Contextual navigation for the user dashboard.
+- **`Button.jsx`**: Reusable monochrome button with consistent hover states.
+- **`UserCard.jsx`**: Modular display for user profile summaries.
+- **`Footer.jsx`**: Simple global footer.
+
 ---
 
 ## 6. Styling Philosophy
@@ -224,3 +255,4 @@ The project uses **Vanilla CSS** with a strict monochrome constraint:
 - **Colors**: Only `#000000`, `#ffffff`, and `#888888`.
 - **Typography**: Monospace fonts (`Courier New`) for a technical, flat aesthetic.
 - **Layout**: Simple borders and zero shadows or gradients.
+- **Responsiveness**: A dynamic grid system that automatically adjusts column counts (4, 3, 2, 1) based on viewport width.

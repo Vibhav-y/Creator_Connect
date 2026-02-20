@@ -6,7 +6,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Settings from './pages/Settings';
 import Login from './pages/Login';
 import ExploreAssets from './pages/ExploreAssets';
 import MyAssets from './pages/MyAssets';
@@ -53,7 +52,6 @@ const MainLayout = () => {
             <Route path="/" element={<Navigate to="/explore" replace />} />
             <Route path="/explore" element={<ProtectedRoute><ExploreAssets /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/create-asset" element={<ProtectedRoute><CreateAsset /></ProtectedRoute>} />
             <Route path="/my-assets" element={<ProtectedRoute><MyAssets /></ProtectedRoute>} />
             
